@@ -2,7 +2,7 @@
 
 install bacula client and server with ansible
 
-Currently assumes one remote client
+Currently assumes one remote client. Client has a running mysql database. The database credentials are stored in /root/.my.conf. This script is meant for the server created by the https://github.com/wiebew/ispconfig_install ansible script
 
 #### Usage
 create vars.yml file, copy it from vars.yml.example 

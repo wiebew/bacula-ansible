@@ -8,9 +8,14 @@
   - service: name=bacula-fd state=stopped
 
   - name: copy bacula conf files
-    template: src={{item}} dest=/etc/bacula/ backup=yes
+    template: src={{item}} dest=/etc/bacula/ backup=yes mode=600
     with_items:
       - bacula-fd.conf
+
+  - name: copy databse backup script
+    copy: src={{item}} dest=/etc/bacula/ backup=yes mode=700
+    with_items:
+      - backupdbs
 
   - service: name=bacula-fd state=started
 
