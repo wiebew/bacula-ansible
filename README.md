@@ -1,19 +1,20 @@
-bacula-ansible
-==============
+# bacula-ansible
 
 install bacula client and server with ansible
 
-
 Currently assumes one remote client
 
+#### Usage
+create vars.yml file, copy it from vars.yml.example 
+fill in the values.
 
-you could generate a password with: 
+to generate a strong password: 
 ```console
 openssl rand -base64 32 | tr -cd '[:alnum:]'
 ```
 
 
-On Apple OSX this will paste the result in your clipboard:
+On Apple OSX this will paste the password in your clipboard, so you can paste it in the editor:
 ```console
 openssl rand -base64 32 | tr -cd '[:alnum:]' | pbcopy
 ```
