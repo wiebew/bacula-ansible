@@ -5,6 +5,7 @@
   sd_address: server.example.com
   sd_archive_device: /mnt/tank1/bacula
   director_name: a_dir_name
+  messages_email: not@available.org
 
   
   # client settings
