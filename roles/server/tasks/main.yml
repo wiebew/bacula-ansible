@@ -1,0 +1,27 @@
+---  
+
+  - name: make sure python mysql utilities are present
+    apt: name={{item}} state=present
+    with_items:
+      - bacula-director-sqlite3
+      - bacula-sd
+      - bacula-console
+  
+  - service: name={{item}} state=stopped
+    with_items:
+      - bacula-director
+      - bacula-sd
+
+  - name: copy bacula conf files
+    template: src={{item}} dest=/etc/bacula/ backup=yes
+    with_items:
+      - bconsole.conf
+      - bacula-sd.conf
+      - bacula-dir.conf
+      
+
+  - service: name={{item}} state=started
+    with_items:
+      - bacula-director
+      - bacula-sd
+

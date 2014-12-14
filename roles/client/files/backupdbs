@@ -1,0 +1,26 @@
+#!/bin/sh
+# backup script for mysql, assumes a .my.sql file is present in /root
+
+# Directory to store backups in
+DST=/var/backup
+# A regex, passed to egrep -v, for which databases to ignore
+IGNREG='^(information_schema|performance_schema|mysql)$'
+# Any backups older than this will be deleted first
+KEEPDAYS=7
+
+DATE=$(date  +%Y-%m-%d)
+
+mkdir -p $DST
+cd /var/lib/mysql
+
+find ${DST} -type f -mtime +${KEEPDAYS} -exec rm -f {} \;
+rmdir $DST/* 2>/dev/null
+
+mkdir -p ${DST}/${DATE}
+for db in $( mysql --defaults-extra-file=/root/.my.cnf -B -N -e "show databases" | egrep -v ${IGNREG}) ; do
+        echo -n "Backing up ${db}... "
+        mysqldump --defaults-extra-file=/root/.my.cnf $db | gzip -c > ${DST}/${DATE}/${db}.sql.gz
+        echo "Done."
+done
+
+exit 0

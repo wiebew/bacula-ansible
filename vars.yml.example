@@ -1,0 +1,14 @@
+---
+  # server settings
+  director_password: "Rc-8zJ-ss"
+  sd_password: "r8E-fwe24234234234"
+  sd_address: server.example.com
+  sd_archive_device: /mnt/tank1/bacula
+  director_name: a_dir_name
+
+  
+  # client settings
+  fd_password: "fafpoadfs9as9f-9asdf"
+  client_address: server.example.com
+  
+  
